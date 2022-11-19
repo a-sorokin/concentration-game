@@ -3,10 +3,12 @@
 }
 
 .sidebar {
+  position: absolute;
+  top: 0;
+  left: 0;
   height: calc(100vh - 60px);
-  border: 1px solid #fff;
-  padding: 20px;
   width: 100px;
+  padding: 20px;
 }
 
 .sidebarElement {
@@ -16,5 +18,5 @@
 .field {
   display: flex;
   justify-content: center;
-  width: calc(100vw - 100px);
+  width: 100vw;
 }

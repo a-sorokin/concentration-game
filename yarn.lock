@@ -255,6 +255,11 @@
   resolved "https://registry.yarnpkg.com/@esbuild/linux-loong64/-/linux-loong64-0.15.14.tgz#1221684955c44385f8af34f7240088b7dc08d19d"
   integrity sha512-eQi9rosGNVQFJyJWV0HCA5WZae/qWIQME7s8/j8DMvnylfBv62Pbu+zJ2eUDqNf2O4u3WB+OEXyfkpBoe194sg==
 
+"@fractalsoftware/random-avatar-generator@^1.0.11":
+  version "1.0.11"
+  resolved "https://registry.yarnpkg.com/@fractalsoftware/random-avatar-generator/-/random-avatar-generator-1.0.11.tgz#87111233416ba2c87a294dcdb3b561a583d8b6d4"
+  integrity sha512-LV+ndmma0uRkxBIukxgZU8XwH0QoTY/mhLNgLRwoUyuMmyosxdWzVW85Y4DtrCRrn3lkuLB+IQckdVfNdUxhNA==
+
 "@jridgewell/gen-mapping@^0.1.0":
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/@jridgewell/gen-mapping/-/gen-mapping-0.1.1.tgz#e5d2e450306a9491e3bd77e323e38d7aff315996"

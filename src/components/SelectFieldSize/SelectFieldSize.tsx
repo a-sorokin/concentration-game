@@ -9,9 +9,9 @@ export const SelectFieldSize = () => {
       <h2>Field size:</h2>
 
       <div>
-        <button onClick={() => createField(6)}>Small</button>
-        <button onClick={() => createField(10)}>Medium</button>
-        <button onClick={() => createField(16)}>Big</button>
+        <button onClick={() => createField(4)}>Small</button>
+        <button onClick={() => createField(6)}>Medium</button>
+        <button onClick={() => createField(8)}>Big</button>
       </div>
     </div>
   );
