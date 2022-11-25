@@ -1,13 +1,31 @@
-.card {
-  display: flex;
+@mixin size {
   max-width: 100px;
   max-height: 100px;
   min-width: 10px;
   min-height: 10px;
   width: 100px;
   height: 100px;
+}
+
+.card {
+  @include size;
   margin: 10px;
-  border: 3px solid var(--text-color);
-  border-radius: 5px;
   cursor: pointer;
 }
+
+.cardImage {
+  position: absolute;
+  @include size;
+  will-change: transform, opacity;
+  border: 3px solid rgba(255, 255, 255, 0.5);
+  border-radius: 5px;
+}
+
+.paired {
+  border: 3px solid var(--accent-color);
+}
+
+.cardBack {
+  background-color: #1a1a1a;
+}
+

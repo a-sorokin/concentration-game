@@ -11,11 +11,12 @@
 
   --text-color: rgba(255, 255, 255, 0.87);
   --background-color: #242424;
+  --accent-color: #646cff;
 }
 
 a {
   font-weight: 500;
-  color: #646cff;
+  color: var(--accent-color);
   text-decoration: inherit;
 }
 a:hover {

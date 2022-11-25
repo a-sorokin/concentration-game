@@ -1,14 +1,16 @@
 import s from "./History.module.scss";
+import { useAppStore } from "store/store";
+import { formatTime } from "store/utils";
 
 export const History = () => {
-  return <div className={s.history}>
-    <div>dsfsdf</div>
-    <div>dsfsdf</div>
-    <div>dsfsdf</div>
-    <div>dsfsdf</div>
-    <div>dsfsdf</div>
-    <div>dsfsdf</div>
-    <div>dsfsdf</div>
-    <div>dsfsdf</div>
-  </div>
+  const attemptsHistory = useAppStore((state) => state.attemptsHistory);
+
+  return (
+    <div className={s.history}>
+      <div>Attempts:</div>
+      {attemptsHistory.sort().map((attempt, index) => (
+        <div key={index}>{formatTime(attempt)}</div>
+      ))}
+    </div>
+  );
 };
