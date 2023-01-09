@@ -24,7 +24,7 @@ export const Timer = () => {
     return () => {
       if (interval) clearInterval(interval);
     };
-  }, [isStarted]);
+  }, [isStarted, saveResult, time]);
 
   return <div className={s.timer}>{formatTime(time)}</div>;
 };

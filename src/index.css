@@ -14,6 +14,10 @@
   --accent-color: #646cff;
 }
 
+* {
+  box-sizing: border-box;
+}
+
 a {
   font-weight: 500;
   color: var(--accent-color);

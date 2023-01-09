@@ -18,7 +18,7 @@
   @include size;
   will-change: transform, opacity;
   border: 3px solid rgba(255, 255, 255, 0.5);
-  border-radius: 5px;
+  border-radius: 10px;
 }
 
 .paired {
@@ -28,4 +28,3 @@
 .cardBack {
   background-color: #1a1a1a;
 }
-

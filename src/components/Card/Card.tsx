@@ -8,11 +8,11 @@ import clsx from "clsx";
 export const Card: FC<{ card: TCard }> = ({ card }) => {
   const isOpened = useMemo(
     () => card.status === "opened" || card.isPaired,
-    [card.status]
+    [card.isPaired, card.status]
   );
   const isPaired = useMemo(() => card.isPaired, [card.isPaired]);
   const openCard = useAppStore((state) => state.openCard);
-  const openHandler = useCallback(() => openCard(card.id), [card.id]);
+  const openHandler = useCallback(() => openCard(card.id), [card.id, openCard]);
 
   const { transform, opacity } = useSpring({
     config: { mass: 5, tension: 500, friction: 80 },
@@ -26,10 +26,7 @@ export const Card: FC<{ card: TCard }> = ({ card }) => {
         className={clsx(s.cardImage, isPaired && s.paired)}
         style={{ opacity: opacity.to((o) => 1 - o), transform }}
       >
-        <img
-          src={`data:image/svg+xml;base64,${btoa(card.img)}`}
-          alt="Card image"
-        />
+        <img src={`data:image/svg+xml;base64,${btoa(card.img)}`} alt="Card" />
       </a.div>
 
       <a.div
