@@ -12,7 +12,7 @@ const shuffle = <Data>(array: Data[]): Data[] => {
 const getImagesArray = (count: number): { img: string; id: number }[] => {
   const images = [];
   for (let i = 0; i < count; i++) {
-    const img = getRandomAvatar();
+    const img = getRandomAvatar(3);
     images.push({ img, id: i });
     images.push({ img, id: i });
   }

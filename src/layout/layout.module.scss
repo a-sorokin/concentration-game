@@ -9,10 +9,10 @@
   height: calc(100vh - 60px);
   width: 100px;
   padding: 20px;
-}
 
-.sidebarElement {
-  margin-bottom: 20px;
+  & > div {
+    margin-bottom: 20px;
+  }
 }
 
 .field {

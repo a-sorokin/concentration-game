@@ -18,6 +18,7 @@ interface TState {
   checkPair: () => void;
   checkWin: () => void;
   saveResult: (result: number) => void;
+  setIsStarted: (isStarted: boolean) => void;
 }
 
 export const useAppStore = create<TState>((set, get) => ({
@@ -27,7 +28,7 @@ export const useAppStore = create<TState>((set, get) => ({
   attemptsHistory: getAttemptsHistory(),
 
   createField: (size: number) => {
-    set({ field: createField([size, size]), isStarted: true });
+    set({ field: createField([size, size]) });
   },
   openCard: (id: string) => {
     set((state) => {
@@ -38,6 +39,7 @@ export const useAppStore = create<TState>((set, get) => ({
       return {
         field: newField,
         alreadyOpenedCards: state.alreadyOpenedCards,
+        isStarted: true,
       };
     });
     get().checkPair();
@@ -82,4 +84,5 @@ export const useAppStore = create<TState>((set, get) => ({
       return { attemptsHistory: newHistory };
     });
   },
+  setIsStarted: (isStarted: boolean) => set({ isStarted }),
 }));
