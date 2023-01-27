@@ -8,40 +8,44 @@ import {
 } from "store/utils";
 
 interface TState {
-  isStarted: boolean;
   field: TField;
   alreadyOpenedCards: Set<string>;
   attemptsHistory: number[];
+  timer: number;
+  intervalId: number;
+  isFinished: boolean;
 
   createField: (size: number) => void;
   openCard: (id: string) => void;
   checkPair: () => void;
   checkWin: () => void;
   saveResult: (result: number) => void;
-  setIsStarted: (isStarted: boolean) => void;
+  startTimer: () => void;
+  stopTimer: () => void;
 }
 
 export const useAppStore = create<TState>((set, get) => ({
-  isStarted: false,
   field: [],
   alreadyOpenedCards: new Set(),
   attemptsHistory: getAttemptsHistory(),
+  timer: 0,
+  intervalId: 0,
+  isFinished: false,
 
   createField: (size: number) => {
-    set({ field: createField([size, size]) });
+    set({ field: createField([size, size]), isFinished: false });
   },
   openCard: (id: string) => {
+    if (get().timer === 0) get().startTimer();
+
     set((state) => {
       const [y, x] = getCoordinates(id);
       const newField = [...state.field];
       newField[y][x].status = "opened";
       state.alreadyOpenedCards.add(id);
-      return {
-        field: newField,
-        alreadyOpenedCards: state.alreadyOpenedCards,
-        isStarted: true,
-      };
+      return { field: newField, alreadyOpenedCards: state.alreadyOpenedCards };
     });
+
     get().checkPair();
   },
   checkPair: () => {
@@ -53,7 +57,6 @@ export const useAppStore = create<TState>((set, get) => ({
     const secondCardId = iterator.next().value;
     const [y1, x1] = getCoordinates(firstCardId);
     const [y2, x2] = getCoordinates(secondCardId);
-
     const newField = [...field];
 
     if (field[y1][x1].imgId === field[y2][x2].imgId) {
@@ -74,15 +77,24 @@ export const useAppStore = create<TState>((set, get) => ({
     const { field } = get();
     const isWin = field.every((row) => row.every((card) => card.isPaired));
     if (isWin) {
-      set({ isStarted: false });
+      const { timer, stopTimer, saveResult } = get();
+      stopTimer();
+      saveResult(timer);
+      set({ timer: 0, isFinished: true });
     }
   },
   saveResult: (result: number) => {
     set((state) => {
-      const newHistory = [...state.attemptsHistory, result];
+      const newHistory = [result, ...state.attemptsHistory];
       saveAttemptsHistory(newHistory);
       return { attemptsHistory: newHistory };
     });
   },
-  setIsStarted: (isStarted: boolean) => set({ isStarted }),
+  startTimer: () => {
+    const intervalId = setInterval(() => {
+      set((state) => ({ timer: state.timer + 10 }));
+    }, 10);
+    set({ intervalId });
+  },
+  stopTimer: () => clearInterval(get().intervalId),
 }));

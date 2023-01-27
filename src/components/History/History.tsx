@@ -8,7 +8,7 @@ export const History = () => {
   return (
     <div className={s.history}>
       <div>Attempts:</div>
-      {attemptsHistory.sort().map((attempt, index) => (
+      {attemptsHistory.map((attempt, index) => (
         <div key={index}>{formatTime(attempt)}</div>
       ))}
     </div>
